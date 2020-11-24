@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import api from '../services/api';
 import Kick from '../components/Kick';
 import Question from '../components/Question';
@@ -52,7 +53,13 @@ const Game = () => {
 
       {answerStatus === 'incorrect' && <FormNewQuestion wrongAnswer={answer} />}
 
-      {answerStatus === 'correct' && <h3>URRRUUUUUUUUL</h3>}
+      {answerStatus === 'correct' && (
+        <div>
+          <h3>ACERTEI!</h3>
+          <p>Fico feliz em ter acertado seu prato. Vamos jogar de novo?</p>
+          <Link to="/">Recomeçar</Link>
+        </div>
+      )}
     </>
   );
 };
