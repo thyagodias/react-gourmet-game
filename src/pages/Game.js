@@ -35,11 +35,8 @@ const Game = () => {
 
   return (
     <>
-      <h1>Esta é a página do jogo</h1>
+      <h1>Jogo Gourmet</h1>
       <hr />
-      <p>Aqui é o componente de pergutna</p>
-      <pre>{state.node}</pre>
-      {/* <p>é a ultima {isLastQuestion}</p> */}
 
       {isLastQuestion !== true && (
         <Question
