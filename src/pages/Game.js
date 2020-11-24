@@ -9,17 +9,13 @@ const Game = () => {
   const [answer, setAnswer] = useState('');
 
   function getQuestion(kind) {
+    console.log('proxima pergunta', kind);
     api
       .get(`/kind/${kind}`)
       .then(response => {
         setState(response.data.data);
       })
       .catch(error => console.log(error));
-  }
-
-  function handleKick(payload) {
-    setAnswer(payload);
-    setIsLastQuestion(true);
   }
 
   useEffect(() => {
@@ -42,7 +38,7 @@ const Game = () => {
         <Question
           item={state}
           nextQuestion={kind => getQuestion(kind)}
-          kickAnswer={kick => handleKick(kick)}
+          kickAnswer={kick => getQuestion(kick)}
         />
       )}
 
