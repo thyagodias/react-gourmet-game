@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Pergunta = props => {
+const Question = props => {
   const { item, nextQuestion, kickAnswer } = props;
-  console.log('Pergunta <props>: ', props);
+  console.log('Question <props>: ', props);
 
   return (
     <>
@@ -18,7 +18,7 @@ const Pergunta = props => {
   );
 };
 
-Pergunta.propTypes = {
+Question.propTypes = {
   item: PropTypes.shape({
     node: PropTypes.string,
     left: PropTypes.string,
@@ -28,4 +28,4 @@ Pergunta.propTypes = {
   kickAnswer: PropTypes.func.isRequired,
 };
 
-export default Pergunta;
+export default Question;

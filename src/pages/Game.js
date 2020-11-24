@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import Pergunta from '../components/Pergunta';
+import Question from '../components/Question';
 import api from '../services/api';
 
 const Game = () => {
   const [state, setState] = useState({});
+  const [isLastQuestion, setIsLastQuestion] = useState(false);
 
   function getQuestion(kind) {
     api
       .get(`/kind/${kind}`)
       .then(response => {
-        console.log('request: ', response);
         setState(response.data.data);
       })
       .catch(error => console.log(error));
@@ -19,17 +19,27 @@ const Game = () => {
     getQuestion('massa');
   }, []);
 
+  useEffect(() => {
+    if (state.left === null && state.right === null) {
+      setIsLastQuestion(true);
+    }
+  }, [state]);
+
   return (
     <>
       <h1>Esta é a página do jogo</h1>
       <hr />
       <p>Aqui é o componente de pergutna</p>
       <pre>{state.node}</pre>
-      <Pergunta
-        item={state}
-        nextQuestion={kind => getQuestion(kind)}
-        kickAnswer={() => console.log('Chutar resposta')}
-      />
+      {/* <p>é a ultima {isLastQuestion}</p> */}
+
+      {isLastQuestion !== true && (
+        <Question
+          item={state}
+          nextQuestion={kind => getQuestion(kind)}
+          kickAnswer={() => console.log('Chutar resposta')}
+        />
+      )}
     </>
   );
 };
