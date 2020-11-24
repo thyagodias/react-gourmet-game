@@ -8,7 +8,7 @@ const Question = props => {
   return (
     <>
       <h2>O seu prato é {item.node} ?</h2>
-      <button type="button" onClick={kickAnswer}>
+      <button type="button" onClick={() => kickAnswer(item.right)}>
         Sim
       </button>
       <button type="button" onClick={() => nextQuestion(item.left)}>
