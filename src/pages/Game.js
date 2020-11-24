@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import api from '../services/api';
 import Kick from '../components/Kick';
 import Question from '../components/Question';
-import api from '../services/api';
+import FormNewQuestion from '../components/FormNewQuestion';
 
 const Game = () => {
   const [state, setState] = useState({});
   const [isLastQuestion, setIsLastQuestion] = useState(false);
   const [answer, setAnswer] = useState('');
+  const [answerStatus, setAnswerStatus] = useState('');
 
   function getQuestion(kind) {
     console.log('proxima pergunta', kind);
@@ -42,7 +44,14 @@ const Game = () => {
         />
       )}
 
-      {isLastQuestion !== false && <Kick kick={answer} />}
+      {isLastQuestion !== false && answerStatus !== 'incorrect' && (
+        <Kick
+          kick={answer}
+          onWrongAnswer={() => setAnswerStatus('incorrect')}
+        />
+      )}
+
+      {answerStatus === 'incorrect' && <FormNewQuestion wrongAnswer={answer} />}
     </>
   );
 };
