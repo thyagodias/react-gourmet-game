@@ -30,6 +30,7 @@ const FormNewQuestion = ({ wrongAnswer }) => {
             <br />
             <input
               type="text"
+              required
               value={kind}
               onChange={event => setKind(event.target.value)}
             />
@@ -41,6 +42,7 @@ const FormNewQuestion = ({ wrongAnswer }) => {
             <br />
             <input
               type="text"
+              required
               value={dish}
               onChange={event => setDish(event.target.value)}
             />
