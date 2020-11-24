@@ -17,7 +17,10 @@ const Game = () => {
       .then(response => {
         setState(response.data.data);
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        alert('Houve um erro, verifique sua conexão e tente novamente');
+        console.log(error);
+      });
   }
 
   useEffect(() => {

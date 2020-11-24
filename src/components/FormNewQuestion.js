@@ -16,7 +16,7 @@ const FormNewQuestion = ({ wrongAnswer }) => {
       })
       .catch(error => {
         console.log(error);
-        alert(error.response.data.message);
+        alert('Houve um erro ao tentar salvar o formulário');
       });
     event.preventDefault();
   }
