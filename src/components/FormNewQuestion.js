@@ -1,18 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import api from '../services/api';
 
 const FormNewQuestion = ({ wrongAnswer }) => {
+  const [kind, setKind] = useState('');
+  const [dish, setDish] = useState('');
+  const [formSubmitStatus, setFormSubmitStatus] = useState(false);
+
+  function handleSubmitForm(event) {
+    api
+      .post(`kind/${wrongAnswer}`, { dish, kind })
+      .then(() => {
+        setFormSubmitStatus(true);
+      })
+      .catch(error => {
+        console.log(error);
+        alert(error.response.data.message);
+      });
+    event.preventDefault();
+  }
+
   return (
     <>
-      <form action="submit">
-        <p>O que o prato que pensou tem de diferente de {wrongAnswer}:</p>
-        <input type="text" />
-        <p>Em que prato pensou?</p>
-        <input type="text" />
-        <br />
-        <br />
-        <button type="submit">Responder</button>
-      </form>
+      {formSubmitStatus === false ? (
+        <form onSubmit={handleSubmitForm}>
+          <label>
+            O que o prato que pensou tem de diferente de {wrongAnswer}:
+            <br />
+            <input
+              type="text"
+              value={kind}
+              onChange={event => setKind(event.target.value)}
+            />
+          </label>
+          <br />
+          <br />
+          <label>
+            Em que prato pensou?
+            <br />
+            <input
+              type="text"
+              value={dish}
+              onChange={event => setDish(event.target.value)}
+            />
+          </label>
+          <br />
+          <br />
+          <button type="submit">Responder</button>
+        </form>
+      ) : (
+        <div>
+          <h3>Resposta enviada com sucesso!</h3>
+          <p>Espero acertar na próxima</p>
+          <Link to="/">Recomeçar</Link>
+        </div>
+      )}
     </>
   );
 };
