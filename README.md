@@ -12,7 +12,7 @@ Instalação das dependências: `npm install`
 
 Executar servidor: `npm start`
 
-Após os comandos, o servidor estará executando em `http://localhost:3333`
+Após os comandos, a aplicação estará executando em `http://localhost:3333`
 
 ---
 
