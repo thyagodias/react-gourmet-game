@@ -11,7 +11,6 @@ const Game = () => {
   const [answerStatus, setAnswerStatus] = useState('');
 
   function getQuestion(kind) {
-    console.log('proxima pergunta', kind);
     api
       .get(`/kind/${kind}`)
       .then(response => {
@@ -35,7 +34,6 @@ const Game = () => {
     <>
       <h1>Jogo Gourmet</h1>
       <hr />
-
       {isLastQuestion !== true && (
         <Question
           item={state}
@@ -44,14 +42,17 @@ const Game = () => {
         />
       )}
 
-      {isLastQuestion !== false && answerStatus !== 'incorrect' && (
+      {isLastQuestion !== false && answerStatus === '' && (
         <Kick
           kick={answer}
           onWrongAnswer={() => setAnswerStatus('incorrect')}
+          onCorrectAnswer={() => setAnswerStatus('correct')}
         />
       )}
 
       {answerStatus === 'incorrect' && <FormNewQuestion wrongAnswer={answer} />}
+
+      {answerStatus === 'correct' && <h3>URRRUUUUUUUUL</h3>}
     </>
   );
 };

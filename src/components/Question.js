@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 const Question = props => {
   const { item, nextQuestion, kickAnswer } = props;
-  console.log('Question <props>: ', props);
 
   return (
     <>
