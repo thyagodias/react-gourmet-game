@@ -7,6 +7,8 @@ const Kick = props => {
     <>
       <h3>O prato que pensou foi ...</h3>
       <h2>{kick}</h2>
+      <button type="button">CERTO</button>
+      <button type="button">Errado</button>
     </>
   );
 };
